@@ -22,38 +22,38 @@ export class TaskController {
   constructor(private taskService: TaskService) {}
 
   @Get()
-  gettasks(@getUser("id") userId: number) {
-    return this.taskService.gettasks(userId);
+  getTasks(@getUser("id") userId: number) {
+    return this.taskService.getTasks(userId);
   }
 
   @Get(":id")
-  gettaskById(
+  getTaskById(
     @getUser("id") userId: number,
     @Param("id", ParseIntPipe) taskId: number
   ) {
-    return this.taskService.gettaskById(userId, taskId);
+    return this.taskService.getTaskById(userId, taskId);
   }
 
   @Post()
-  createtask(@getUser("id") userId: number, @Body() dto: CreateTaskDto) {
-    return this.taskService.createtask(userId, dto);
+  createTask(@getUser("id") userId: number, @Body() dto: CreateTaskDto) {
+    return this.taskService.createTask(userId, dto);
   }
 
   @Patch(":id")
-  edittaskById(
+  editTaskById(
     @getUser("id") userId: number,
     @Param("id", ParseIntPipe) taskId: number,
     @Body() dto: EditTaskDto
   ) {
-    return this.taskService.edittaskById(userId, taskId, dto);
+    return this.taskService.editTaskById(userId, taskId, dto);
   }
 
   @HttpCode(HttpStatus.NO_CONTENT)
   @Delete(":id")
-  deletetaskById(
+  deleteTaskById(
     @getUser("id") userId: number,
     @Param("id", ParseIntPipe) taskId: number
   ) {
-    return this.taskService.deletetaskById(userId, taskId);
+    return this.taskService.deleteTaskById(userId, taskId);
   }
 }

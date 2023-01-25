@@ -10,7 +10,7 @@ import { CreateTaskDto, EditTaskDto } from "./dto";
 export class TaskService {
   constructor(private prisma: PrismaService) {}
 
-  gettasks(userId: number) {
+  getTasks(userId: number) {
     try {
       return this.prisma.task.findMany({
         where: {
@@ -22,7 +22,7 @@ export class TaskService {
     }
   }
 
-  gettaskById(userId: number, taskId: number) {
+  getTaskById(userId: number, taskId: number) {
     return this.prisma.task.findFirst({
       where: {
         id: taskId,
@@ -31,7 +31,7 @@ export class TaskService {
     });
   }
 
-  async createtask(userId: number, dto: CreateTaskDto) {
+  async createTask(userId: number, dto: CreateTaskDto) {
     try {
       const task = await this.prisma.task.create({
         data: {
@@ -45,7 +45,7 @@ export class TaskService {
     }
   }
 
-  async edittaskById(userId: number, taskId: number, dto: EditTaskDto) {
+  async editTaskById(userId: number, taskId: number, dto: EditTaskDto) {
     // get the task by id
     const task = await this.prisma.task.findUnique({
       where: {
@@ -67,7 +67,7 @@ export class TaskService {
     });
   }
 
-  async deletetaskById(userId: number, taskId: number) {
+  async deleteTaskById(userId: number, taskId: number) {
     const task = await this.prisma.task.findUnique({
       where: {
         id: taskId,
